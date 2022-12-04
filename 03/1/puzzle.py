@@ -1,15 +1,15 @@
-def splitContents(contents):
+def splitContents(contents:str) -> dict[str, str]:
     midPoint = int(len(contents) / 2)
     compartment1 = contents[0:midPoint]
     compartment2 = contents[midPoint:]
     return {"compartment1": compartment1,"compartment2":compartment2}
 
-def getDuplicates(backpack):
+def getDuplicates(backpack: dict[str, str]) -> set[str]:
     set1 = set(backpack["compartment1"])
     set2 = set(backpack["compartment2"])
     return set1.intersection(set2)
 
-def getPriorities(duplicates):
+def getPriorities(duplicates: set[str]) -> int:
     if len(duplicates) != 1:
         raise NameError('Not handled')
 

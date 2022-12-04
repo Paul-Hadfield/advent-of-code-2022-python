@@ -1,6 +1,6 @@
 from functools import reduce
 
-def getElvesFood(elvesFood, line):
+def getElvesFood(elvesFood: list[int], line: str) -> list[int]:
     if(line == ''):
         elvesFood.append(0)
     else:

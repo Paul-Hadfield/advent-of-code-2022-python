@@ -1,6 +1,6 @@
 from functools import reduce
 
-def splitIntoGroups(groups, contents):
+def splitIntoGroups(groups: list[list[str]], contents: str) -> list[list[str]]:
     if len(groups) == 0:
         groups.append([])
     elif len(groups[len(groups)-1]) == 3:
@@ -9,13 +9,13 @@ def splitIntoGroups(groups, contents):
     groups[len(groups)-1].append(contents)
     return groups
 
-def getDuplicates(group):
+def getDuplicates(group: list[str]) -> set[str]:
     set1 = set(group[0])
     set2 = set(group[1])
     set3 = set(group[2])
     return set1.intersection(set2).intersection(set3)
 
-def getPriorities(duplicates):
+def getPriorities(duplicates: set[str]) -> int:
     if len(duplicates) != 1:
         raise NameError('Not handled')
 
@@ -28,7 +28,7 @@ def getPriorities(duplicates):
 with open('data.txt') as f:
     backpacks = f.read().splitlines()
 
-groups = list(reduce(splitIntoGroups, backpacks, []))
+groups = reduce(splitIntoGroups, backpacks, [])
 duplicates = list(map(getDuplicates, groups))
 priorities = list(map(getPriorities, duplicates))
 print(sum(priorities))

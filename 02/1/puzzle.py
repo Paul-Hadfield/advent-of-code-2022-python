@@ -1,4 +1,4 @@
-def parsePlayType(encodedPlayType):
+def parsePlayType(encodedPlayType: str) -> str:
     if encodedPlayType == 'A' or encodedPlayType == 'X':
         return 'Rock'
     if encodedPlayType == 'B' or encodedPlayType == 'Y':
@@ -7,10 +7,10 @@ def parsePlayType(encodedPlayType):
         return 'Scissors'
     raise NameError('Unknown value')
 
-def parseGameMove(gameLine):
+def parseGameMove(gameLine: str) -> dict[str, str]:
     return {"player1": parsePlayType(gameLine[0]), "player2": parsePlayType(gameLine[2])}
 
-def getScore(player, winner, played):
+def getScore(player: int, winner: int, played: str) -> int:
     
     if player == winner:
         winScore = 6
@@ -28,7 +28,7 @@ def getScore(player, winner, played):
 
     return winScore + playedScore
 
-def playGame(game):
+def playGame(game:dict[str, str]) -> dict[str, int]:
     if game["player1"] == game["player2"]:
         winner = 0
 # Rock defeats Scissors, Scissors defeats Paper, and Paper defeats Rock
@@ -46,7 +46,7 @@ def playGame(game):
         "player2Score": getScore(2, winner, game["player2"]) 
     }
 
-def getPlayer2Scores(result):
+def getPlayer2Scores(result: dict[str, int]) -> int:
     return result["player2Score"]
 
 with open('data.txt') as f:
